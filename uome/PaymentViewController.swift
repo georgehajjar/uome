@@ -9,31 +9,35 @@
 import UIKit
 
 class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+
+    var temp = ""
     
-    var paidBy = [String]()
-    let foods = ["apple", "banana", "grapes", "orange"]
     
     @IBOutlet weak var paidByPicker: UIPickerView!
+    @IBOutlet weak var totalMoney: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return foods[row]
+        return DataManager.sharedManager.nameData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return foods.count
+        return DataManager.sharedManager.nameData.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        paidBy.append(foods[row])
-        print(paidBy[0])
+        temp = DataManager.sharedManager.nameData[row]
     }
+    
+    @IBAction func donePressed(_ sender: UIButton) {
+        DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: temp)!] = Int(totalMoney.text!)!
+    }
+    
 }

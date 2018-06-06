@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="h3b-oM-6F8">
             <objects>
-                <tabBarController id="if8-PM-ZKo" sceneMemberID="viewController">
+                <tabBarController id="if8-PM-ZKo" customClass="MainTabBarController" customModule="uome" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="SRP-eA-uC8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,7 +71,7 @@
         <!--Owes-->
         <scene sceneID="kaj-Fx-mMy">
             <objects>
-                <viewController id="gWE-OU-r56" customClass="ParticipantViewController" customModule="uome" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gWE-OU-r56" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Qw-0H-ak6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,12 +117,28 @@
                                     <outlet property="delegate" destination="i2Z-f3-mlA" id="JVE-X0-LO8"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-HL-5aR">
+                                <rect key="frame" x="169" y="469" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="donePressed:" destination="i2Z-f3-mlA" eventType="touchUpInside" id="uRI-J5-EQS"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rd5-mi-G6p">
+                                <rect key="frame" x="139" y="135" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="J5x-rc-Olv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add" id="blo-q8-HCi"/>
                     <connections>
                         <outlet property="paidByPicker" destination="rLQ-xb-apP" id="HDC-1a-frp"/>
+                        <outlet property="totalMoney" destination="Rd5-mi-G6p" id="Gys-4y-Z2I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hT-Jc-jib" userLabel="First Responder" sceneMemberID="firstResponder"/>
