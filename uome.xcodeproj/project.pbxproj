@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F01B82120C5DC52004B937D /* ParticipantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F01B82020C5DC52004B937D /* ParticipantViewController.swift */; };
 		3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */; };
 		3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */; };
 		3F8DE42120B5AA6C003BF2BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */; };
 		3F8DE42320B5AA6C003BF2BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */; };
 		3F8DE42620B5AA6C003BF2BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */; };
-		3F8DE43120B5AA6C003BF2BC /* uomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE43020B5AA6C003BF2BC /* uomeTests.swift */; };
-		3F8DE43C20B5AA6C003BF2BC /* uomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE43B20B5AA6C003BF2BC /* uomeUITests.swift */; };
+		3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */; };
+		3F8DE45020B749A4003BF2BC /* customTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */; };
+		3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F01B82020C5DC52004B937D /* ParticipantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantViewController.swift; sourceTree = "<group>"; };
 		3F8DE41820B5AA6C003BF2BC /* uome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,11 +45,10 @@
 		3F8DE42520B5AA6C003BF2BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F8DE42720B5AA6C003BF2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8DE42C20B5AA6C003BF2BC /* uomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F8DE43020B5AA6C003BF2BC /* uomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uomeTests.swift; sourceTree = "<group>"; };
-		3F8DE43220B5AA6C003BF2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8DE43720B5AA6C003BF2BC /* uomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F8DE43B20B5AA6C003BF2BC /* uomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uomeUITests.swift; sourceTree = "<group>"; };
-		3F8DE43D20B5AA6C003BF2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
+		3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customTableViewCell.xib; sourceTree = "<group>"; };
+		3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				3F8DE41A20B5AA6C003BF2BC /* uome */,
-				3F8DE42F20B5AA6C003BF2BC /* uomeTests */,
-				3F8DE43A20B5AA6C003BF2BC /* uomeUITests */,
 				3F8DE41920B5AA6C003BF2BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,31 +98,17 @@
 			isa = PBXGroup;
 			children = (
 				3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */,
-				3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */,
 				3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */,
+				3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */,
+				3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */,
+				3F01B82020C5DC52004B937D /* ParticipantViewController.swift */,
+				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
+				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
 				3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */,
 				3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */,
 				3F8DE42720B5AA6C003BF2BC /* Info.plist */,
 			);
 			path = uome;
-			sourceTree = "<group>";
-		};
-		3F8DE42F20B5AA6C003BF2BC /* uomeTests */ = {
-			isa = PBXGroup;
-			children = (
-				3F8DE43020B5AA6C003BF2BC /* uomeTests.swift */,
-				3F8DE43220B5AA6C003BF2BC /* Info.plist */,
-			);
-			path = uomeTests;
-			sourceTree = "<group>";
-		};
-		3F8DE43A20B5AA6C003BF2BC /* uomeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3F8DE43B20B5AA6C003BF2BC /* uomeUITests.swift */,
-				3F8DE43D20B5AA6C003BF2BC /* Info.plist */,
-			);
-			path = uomeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +220,7 @@
 			files = (
 				3F8DE42620B5AA6C003BF2BC /* LaunchScreen.storyboard in Resources */,
 				3F8DE42320B5AA6C003BF2BC /* Assets.xcassets in Resources */,
+				3F8DE45020B749A4003BF2BC /* customTableViewCell.xib in Resources */,
 				3F8DE42120B5AA6C003BF2BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +248,9 @@
 			files = (
 				3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
+				3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */,
+				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,
+				3F01B82120C5DC52004B937D /* ParticipantViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8DE43120B5AA6C003BF2BC /* uomeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8DE43C20B5AA6C003BF2BC /* uomeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
