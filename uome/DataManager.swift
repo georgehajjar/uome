@@ -15,7 +15,7 @@ class DataManager {
     //Hold names of participants
     var nameData = [String]()
     //Hold net amount of each participant. Arrays are linked by index number
-    var moneyData = [Int]()
+    var moneyData = [Double]()
     
     /*For History and Payment tab*/
     
@@ -25,8 +25,8 @@ class DataManager {
     var payer = ""
     //Who got paid for and how much they got paid for
     var payee = [String]()
-    var payeeAmount = [Int]()
+    var payeeAmount = [Double]()
     //Total paid by payer
-    var total = 0
+    var total:Double = 0
     
 }

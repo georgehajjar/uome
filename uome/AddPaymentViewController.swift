@@ -10,27 +10,28 @@ import UIKit
 
 class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    @IBOutlet weak var payeePicker: UIPickerView!
-    @IBOutlet weak var amount: UITextField!
-    
     var restOfNames = [String]()
     var temp = ""
+    
+    @IBOutlet weak var payeeName: UITextField!
+    @IBOutlet weak var amount: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Initialize picker delegates
-        self.payeePicker.delegate = self
+        //Initialize Payee input picker
+        let payeePickerView = UIPickerView()
+        payeePickerView.delegate = self
+        payeeName.inputView = payeePickerView
         
+        //Create new array with all names minus payer
         restOfNames = DataManager.sharedManager.nameData
         let toBeRemoved = restOfNames.index(of: DataManager.sharedManager.payer)
         restOfNames.remove(at: toBeRemoved!)
-        
-        self.payeePicker.reloadAllComponents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.payeePicker.reloadAllComponents()
+        //self.payeePicker.reloadAllComponents()
     }
     
     @IBAction func quitAddPayment(_ sender: Any) {
@@ -62,10 +63,20 @@ class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPick
     //When item is selected in pickerview do...
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         temp = restOfNames[row]
+        payeeName.text = restOfNames[row]
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func addPayment(_ sender: Any) {
         DataManager.sharedManager.payee.append(temp)
-        DataManager.sharedManager.payeeAmount.append(Int(amount.text!)!)
+        DataManager.sharedManager.payeeAmount.append(Double(amount.text!)!)
+        
+        DataManager.sharedManager.total = DataManager.sharedManager.total + Double(amount.text!)!
+        
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }

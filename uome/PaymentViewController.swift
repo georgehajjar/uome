@@ -16,7 +16,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var paymentTitle: UITextField!
     @IBOutlet weak var paidByName: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var totalMoney: UITextField!
+    @IBOutlet weak var total: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,10 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         //self.paidByPickerView.reloadAllComponents()
         self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        total.text = String(format: "$ %.02f", DataManager.sharedManager.total)
     }
     
     //Set text color to white
@@ -69,7 +73,6 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         DataManager.sharedManager.payer = DataManager.sharedManager.nameData[row]
         paidByName.text = DataManager.sharedManager.nameData[row]
-        print(DataManager.sharedManager.payer)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -93,12 +96,25 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func addPressed(_ sender: UIButton) {
         if paymentTitle.text != "" || !tableView.visibleCells.isEmpty {
-            DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payer)!] = Int(totalMoney.text!)!
+            //DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payer)!] = Int(totalMoney.text!)!
             DataManager.sharedManager.historyTitle = paymentTitle.text!
+            
+            //Handle amount to give to payer
+            DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: paidByName.text!)!] = Double(total.text!)!
+            
         }
         else {
             //Error popup
         }
+        
+        paymentTitle.text = ""
+        paidByName.text = ""
+        DataManager.sharedManager.payee.removeAll()
+        DataManager.sharedManager.payeeAmount.removeAll()
+        DataManager.sharedManager.total = 0
+        self.tableView.reloadData()
+        total.text = ""
+        
     }
     
 }
