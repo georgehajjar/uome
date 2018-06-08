@@ -8,22 +8,39 @@
 
 import UIKit
 
-class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
-    var temp = ""
+class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    var payer = ""
+    let cellReuseIdentifier = "cell"
     
     @IBOutlet weak var paymentTitle: UITextField!
-    @IBOutlet weak var paidByPicker: UIPickerView!
+    @IBOutlet weak var paidByName: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalMoney: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Initialize Paid By input picker
+        let paidByPickerView = UIPickerView()
+        paidByPickerView.delegate = self
+        paidByName.inputView = paidByPickerView
+        
+        //Initialize table delegates
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        
+        //Initialize customTableViewCell nib
+        let nib = UINib(nibName: "customTableViewCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "cell")
+        
+        //Hide Table View
+        tableView.tableFooterView = UIView()
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.paidByPicker.reloadAllComponents()
+        //self.paidByPickerView.reloadAllComponents()
+        self.tableView.reloadData()
     }
     
     //Set text color to white
@@ -50,12 +67,42 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     //When item is selected in pickerview do...
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        temp = DataManager.sharedManager.nameData[row]
+        DataManager.sharedManager.payer = DataManager.sharedManager.nameData[row]
+        paidByName.text = DataManager.sharedManager.nameData[row]
+        print(DataManager.sharedManager.payer)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DataManager.sharedManager.payee.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //Initialize custom cell
+        let cell:customTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! customTableViewCell
+        
+        if !DataManager.sharedManager.payee.isEmpty {
+            cell.nameLabel.text = DataManager.sharedManager.payee[indexPath.row]
+            cell.priceLabel.text = String(DataManager.sharedManager.payeeAmount[indexPath.row])
+        }
+        return cell
+    }
     
     @IBAction func addPressed(_ sender: UIButton) {
-        DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: temp)!] = Int(totalMoney.text!)!
+        if paymentTitle.text != "" || !tableView.visibleCells.isEmpty {
+            DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payer)!] = Int(totalMoney.text!)!
+            DataManager.sharedManager.historyTitle = paymentTitle.text!
+        }
+        else {
+            //Error popup
+        }
     }
     
 }
+
+/*        if !tableView.visibleCells.isEmpty {
+ paidByPicker.isUserInteractionEnabled = false
+ }*/

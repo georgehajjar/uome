@@ -17,6 +17,7 @@
 		3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */; };
 		3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BA20C864C10012F536 /* MainTabBarController.swift */; };
 		3FA078BD20C869500012F536 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BC20C869500012F536 /* DataManager.swift */; };
+		3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		3FA078BA20C864C10012F536 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3FA078BC20C869500012F536 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				3FA078BA20C864C10012F536 /* MainTabBarController.swift */,
 				3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */,
 				3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */,
+				3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */,
 				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
 				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
 				3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */,
@@ -254,6 +257,7 @@
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,
 				3FA078BD20C869500012F536 /* DataManager.swift in Sources */,
 				3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */,
+				3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */,
 				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
