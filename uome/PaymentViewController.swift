@@ -16,7 +16,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var paymentTitle: UITextField!
     @IBOutlet weak var paidByName: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var total: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        total.text = String(format: "$ %.02f", DataManager.sharedManager.total)
+        totalLabel.text = String(format: "$ %.02f", DataManager.sharedManager.total)
     }
     
     //Set text color to white
@@ -89,7 +89,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if !DataManager.sharedManager.payee.isEmpty {
             cell.nameLabel.text = DataManager.sharedManager.payee[indexPath.row]
-            cell.priceLabel.text = String(DataManager.sharedManager.payeeAmount[indexPath.row])
+            cell.priceLabel.text = String(format: "$ %.02f", DataManager.sharedManager.payeeAmount[indexPath.row])
         }
         return cell
     }
@@ -100,11 +100,18 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             DataManager.sharedManager.historyTitle = paymentTitle.text!
             
             //Handle amount to give to payer
-            DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: paidByName.text!)!] = Double(total.text!)!
+            DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: paidByName.text!)!] = DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: paidByName.text!)!] + DataManager.sharedManager.total
             
+           //Handle amount to give to payee
+            for payee in DataManager.sharedManager.payee {
+                DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] = DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] - DataManager.sharedManager.payeeAmount[DataManager.sharedManager.payee.index(of: payee)!]
+            }
         }
         else {
-            //Error popup
+            let alert = UIAlertController(title: "Error", message: "No Payments Added!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
         }
         
         paymentTitle.text = ""
@@ -113,7 +120,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         DataManager.sharedManager.payeeAmount.removeAll()
         DataManager.sharedManager.total = 0
         self.tableView.reloadData()
-        total.text = ""
+        totalLabel.text = ""
         
     }
     

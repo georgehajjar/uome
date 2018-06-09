@@ -73,7 +73,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if !DataManager.sharedManager.nameData.isEmpty {
             cell.nameLabel.text = DataManager.sharedManager.nameData[indexPath.row]
-            cell.priceLabel.text = String(DataManager.sharedManager.moneyData[indexPath.row])
+            cell.priceLabel.text = String(format: "$ %.02f", DataManager.sharedManager.moneyData[indexPath.row])
         }
         return cell
     }
