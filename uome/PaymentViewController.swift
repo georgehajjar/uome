@@ -10,9 +10,9 @@ import UIKit
 
 class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var payer = ""
     let cellReuseIdentifier = "cell"
     
+    @IBOutlet weak var addPaymentButton: UIButton!
     @IBOutlet weak var paymentTitle: UITextField!
     @IBOutlet weak var paidByName: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -36,25 +36,31 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //Hide Table View
         tableView.tableFooterView = UIView()
+        
+        //Lock add payment button if user did not input payer
+        addPaymentButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.paidByPickerView.reloadAllComponents()
         self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         totalLabel.text = String(format: "$ %.02f", DataManager.sharedManager.total)
+        
+        //Lock payer change if user already added a payment
+        if !tableView.visibleCells.isEmpty {
+            paidByName.isUserInteractionEnabled = false
+        }
     }
     
     //Set text color to white
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let str = DataManager.sharedManager.nameData[row]
         return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
-
     }
     
-    //
+    //Number of columns
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -73,6 +79,11 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         DataManager.sharedManager.payer = DataManager.sharedManager.nameData[row]
         paidByName.text = DataManager.sharedManager.nameData[row]
+        
+        //Unlock add payment button if user inputted payer
+        if paidByName.text != "" {
+            addPaymentButton.isEnabled = true
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -95,8 +106,9 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func addPressed(_ sender: UIButton) {
-        if paymentTitle.text != "" || !tableView.visibleCells.isEmpty {
-            //DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payer)!] = Int(totalMoney.text!)!
+        if paymentTitle.text != "" && !tableView.visibleCells.isEmpty {
+            
+            //Save title
             DataManager.sharedManager.historyTitle = paymentTitle.text!
             
             //Handle amount to give to payer
@@ -107,29 +119,27 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] = DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] - DataManager.sharedManager.payeeAmount[DataManager.sharedManager.payee.index(of: payee)!]
             }
             
+            //Alert when payment is added to home screen
             let alert = UIAlertController(title: "Success", message: "Added Payment", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
+            //Reset everything
+            paymentTitle.text = ""
+            paidByName.text = ""
+            DataManager.sharedManager.payee.removeAll()
+            DataManager.sharedManager.payeeAmount.removeAll()
+            DataManager.sharedManager.total = 0
+            self.tableView.reloadData()
+            totalLabel.text = ""
         }
+        
         else {
-            let alert = UIAlertController(title: "Error", message: "No Payments Added!", preferredStyle: UIAlertControllerStyle.alert)
+            //Alert when not all fields are filled
+            let alert = UIAlertController(title: "Error", message: "Fill Out all Fields!", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-
         }
-        
-        paymentTitle.text = ""
-        paidByName.text = ""
-        DataManager.sharedManager.payee.removeAll()
-        DataManager.sharedManager.payeeAmount.removeAll()
-        DataManager.sharedManager.total = 0
-        self.tableView.reloadData()
-        totalLabel.text = ""
-        
     }
     
 }
-
-/*        if !tableView.visibleCells.isEmpty {
- paidByPicker.isUserInteractionEnabled = false
- }*/

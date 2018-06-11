@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="if8-PM-ZKo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="if8-PM-ZKo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -163,6 +163,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Add" id="blo-q8-HCi"/>
                     <connections>
+                        <outlet property="addPaymentButton" destination="t4k-Zf-CVQ" id="HcZ-kX-bi6"/>
                         <outlet property="paidByName" destination="n0g-ox-sq8" id="3id-vu-H3f"/>
                         <outlet property="paymentTitle" destination="VLO-gA-WHr" id="efX-Kd-Bal"/>
                         <outlet property="tableView" destination="aBF-Ls-dKA" id="4Al-cl-OUi"/>

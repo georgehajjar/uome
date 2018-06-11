@@ -30,10 +30,6 @@ class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPick
         restOfNames.remove(at: toBeRemoved!)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //self.payeePicker.reloadAllComponents()
-    }
-    
     @IBAction func quitAddPayment(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
@@ -45,7 +41,7 @@ class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPick
         return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
     }
     
-    //
+    //Number of columns
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
