@@ -106,6 +106,10 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             for payee in DataManager.sharedManager.payee {
                 DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] = DataManager.sharedManager.moneyData[DataManager.sharedManager.nameData.index(of: payee)!] - DataManager.sharedManager.payeeAmount[DataManager.sharedManager.payee.index(of: payee)!]
             }
+            
+            let alert = UIAlertController(title: "Success", message: "Added Payment", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else {
             let alert = UIAlertController(title: "Error", message: "No Payments Added!", preferredStyle: UIAlertControllerStyle.alert)
