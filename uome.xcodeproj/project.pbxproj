@@ -18,6 +18,7 @@
 		3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BA20C864C10012F536 /* MainTabBarController.swift */; };
 		3FA078BD20C869500012F536 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BC20C869500012F536 /* DataManager.swift */; };
 		3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */; };
+		3FD0B40F20D04A4100B11647 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40E20D04A4100B11647 /* SQLite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3FA078BA20C864C10012F536 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3FA078BC20C869500012F536 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
+		3FD0B40E20D04A4100B11647 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */,
+				3FD0B40E20D04A4100B11647 /* SQLite.swift */,
 				3FA078BC20C869500012F536 /* DataManager.swift */,
 				3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */,
 				3FA078BA20C864C10012F536 /* MainTabBarController.swift */,
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */,
+				3FD0B40F20D04A4100B11647 /* SQLite.swift in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,
 				3FA078BD20C869500012F536 /* DataManager.swift in Sources */,

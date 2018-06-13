@@ -28,5 +28,4 @@ class DataManager {
     var payeeAmount = [Double]()
     //Total paid by payer
     var total:Double = 0
-    
 }
