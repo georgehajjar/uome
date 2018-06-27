@@ -19,6 +19,8 @@
 		3FA078BD20C869500012F536 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BC20C869500012F536 /* DataManager.swift */; };
 		3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */; };
 		3FD0B40F20D04A4100B11647 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40E20D04A4100B11647 /* SQLite.swift */; };
+		847DED4520D89CD200006FBB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DED4420D89CD200006FBB /* CoreDataManager.swift */; };
+		847DED4820D9E41C00006FBB /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 847DED4620D9E41C00006FBB /* Expenses.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		3FA078BC20C869500012F536 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 		3FD0B40E20D04A4100B11647 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
+		847DED4420D89CD200006FBB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		847DED4720D9E41C00006FBB /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		3F8DE40F20B5AA6C003BF2BC = {
 			isa = PBXGroup;
 			children = (
+				847DED4320D89CB200006FBB /* Managers */,
 				3F8DE41A20B5AA6C003BF2BC /* uome */,
 				3F8DE41920B5AA6C003BF2BC /* Products */,
 			);
@@ -118,6 +123,15 @@
 				3F8DE42720B5AA6C003BF2BC /* Info.plist */,
 			);
 			path = uome;
+			sourceTree = "<group>";
+		};
+		847DED4320D89CB200006FBB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				847DED4420D89CD200006FBB /* CoreDataManager.swift */,
+				847DED4620D9E41C00006FBB /* Expenses.xcdatamodeld */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,11 +271,13 @@
 			files = (
 				3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */,
 				3FD0B40F20D04A4100B11647 /* SQLite.swift in Sources */,
+				847DED4820D9E41C00006FBB /* Expenses.xcdatamodeld in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,
 				3FA078BD20C869500012F536 /* DataManager.swift in Sources */,
 				3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */,
 				3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */,
+				847DED4520D89CD200006FBB /* CoreDataManager.swift in Sources */,
 				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +574,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		847DED4620D9E41C00006FBB /* Expenses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				847DED4720D9E41C00006FBB /* Expenses.xcdatamodel */,
+			);
+			currentVersion = 847DED4720D9E41C00006FBB /* Expenses.xcdatamodel */;
+			path = Expenses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3F8DE41020B5AA6C003BF2BC /* Project object */;
 }
