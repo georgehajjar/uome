@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -28,6 +29,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //Hide Table View
         tableView.tableFooterView = UIView()
+        
+        
+//        //New for DB
+//        let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
+//        person.name = "Test"
+//        person.money = 10.1
+//
+//        DatabaseController.saveContext()
+//
+//        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+//
+//        do{
+//            let searchResults = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+//            print("number of results: \(searchResults.count)")
+//
+//            for result in searchResults as [Person]{
+//                print("\(result.name!) has \(result.money)")
+//            }
+//        }
+//        catch{
+//            print("Error: \(error)")
+//        }
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +67,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addTextField(configurationHandler: { textField in textField.placeholder = "Input your name here..." })
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             if let name = alert.textFields?.first?.text {
+                
+                //DB
+                let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
+                person.name = name
+                person.money = 0.0
+                DatabaseController.saveContext()
+                
+                let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+                
+//                //DELETE REQUEST
+//                let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+//                do {
+//                    try DatabaseController.persistentContainer.viewContext.execute(batchDeleteRequest)
+//
+//                } catch {
+//                    print("Error: \(error)")
+//                }
+//                
+//                //DELETE REQUEST END
+                
+                do{
+                    let searchResults = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+                    print("number of results: \(searchResults.count)")
+                    
+                    for result in searchResults as [Person]{
+                        print("\(result.name!) has \(result.money)")
+                    }
+                }
+                catch{
+                    print("Error: \(error)")
+                }
+                //DB END
+                
                 if DataManager.sharedManager.nameData.isEmpty {
                     DataManager.sharedManager.nameData.append(name)
                     DataManager.sharedManager.moneyData.append(0)
@@ -65,6 +123,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataManager.sharedManager.nameData.count
+        //let searchResults = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+        //return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
