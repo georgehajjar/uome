@@ -24,6 +24,7 @@
 		3FF60E6020F644E4007B2542 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */; };
 		3FF60E6120F644E4007B2542 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */; };
 		3FF60E6420F650AD007B2542 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E6320F650AD007B2542 /* DatabaseController.swift */; };
+		3FF60E6620F79CBC007B2542 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FF60E6320F650AD007B2542 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
+		3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */,
 				3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */,
 				3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */,
+				3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */,
 				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
 				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
 				3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */,
@@ -295,6 +298,7 @@
 				3FF60E5E20F644E4007B2542 /* Person+CoreDataClass.swift in Sources */,
 				3FF60E5F20F644E4007B2542 /* Person+CoreDataProperties.swift in Sources */,
 				3FF60E6120F644E4007B2542 /* History+CoreDataProperties.swift in Sources */,
+				3FF60E6620F79CBC007B2542 /* SettingsViewController.swift in Sources */,
 				3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */,
 				3FF60E3820F3D847007B2542 /* Data.xcdatamodeld in Sources */,
 				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,
