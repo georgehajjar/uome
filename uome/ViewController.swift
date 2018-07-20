@@ -36,16 +36,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         //Create Fetch Request
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        
+
         //Configure Fetch Request
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
+
         //Create Fetched Results Controller
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DatabaseController.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
+
         //Configure Fetched Results Controller
         fetchedResultsController.delegate = self
-        
+
         return fetchedResultsController
     }()
     
@@ -70,8 +70,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
                         person.name = name
                         person.money = 0.0
-                        self.tableView.reloadData()
                         DatabaseController.saveContext()
+                        self.tableView.reloadData()
                         print("Person Added. Empty")
                     }
                     else {
@@ -82,8 +82,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
                             person.name = name
                             person.money = 0.0
-                            self.tableView.reloadData()
                             DatabaseController.saveContext()
+                            self.tableView.reloadData()
                             print("Person Added. No Duplicate")
                         }
                     }
@@ -136,7 +136,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        catch{
 //            print("Error: \(error)")
 //        }
-        return 2
+        
+        guard let sections = self.fetchedResultsController.sections else {
+            fatalError("No sections in fetchedResultsController")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -153,7 +158,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         do{
             let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
             
-            if people.count > 0 {
+            if people.count != 0 {
                 cell.nameLabel.text = people[indexPath.row].name!
                 cell.priceLabel.text = String(format: "$ %.02f", people[indexPath.row].money)
             }
