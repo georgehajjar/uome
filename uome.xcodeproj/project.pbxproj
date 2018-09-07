@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */; };
-		3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */; };
+		3F8DE41E20B5AA6C003BF2BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41D20B5AA6C003BF2BC /* HomeViewController.swift */; };
 		3F8DE42120B5AA6C003BF2BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */; };
 		3F8DE42320B5AA6C003BF2BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */; };
 		3F8DE42620B5AA6C003BF2BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		3F8DE41820B5AA6C003BF2BC /* uome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F8DE41D20B5AA6C003BF2BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3F8DE42020B5AA6C003BF2BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8DE42520B5AA6C003BF2BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -94,6 +94,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F38FF172141AF2B0054133F /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				3F38FF192141AF880054133F /* ViewControllers */,
+				3F38FF182141AF840054133F /* Cells */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		3F38FF182141AF840054133F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
+				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3F38FF192141AF880054133F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FA078BA20C864C10012F536 /* MainTabBarController.swift */,
+				3F8DE41D20B5AA6C003BF2BC /* HomeViewController.swift */,
+				3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */,
+				3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */,
+				3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F38FF1A2141AFC20054133F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */,
+				3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		3F38FF1B2141B01D0054133F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F38FF1C2141B0A50054133F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3FF60E5A20F644E4007B2542 /* Person+CoreDataClass.swift */,
+				3FF60E5B20F644E4007B2542 /* Person+CoreDataProperties.swift */,
+				3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */,
+				3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		3F8DE40F20B5AA6C003BF2BC = {
 			isa = PBXGroup;
 			children = (
@@ -120,17 +178,8 @@
 				3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */,
 				3FF60E6320F650AD007B2542 /* DatabaseController.swift */,
 				3FA078BC20C869500012F536 /* DataManager.swift */,
-				3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */,
-				3FA078BA20C864C10012F536 /* MainTabBarController.swift */,
-				3F8DE41D20B5AA6C003BF2BC /* ViewController.swift */,
-				3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */,
-				3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */,
-				3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */,
-				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
-				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
-				3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */,
-				3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */,
 				3F8DE42720B5AA6C003BF2BC /* Info.plist */,
+				3F38FF1B2141B01D0054133F /* Resources */,
 			);
 			path = uome;
 			sourceTree = "<group>";
@@ -138,10 +187,9 @@
 		3FF60E6220F644FD007B2542 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3FF60E5A20F644E4007B2542 /* Person+CoreDataClass.swift */,
-				3FF60E5B20F644E4007B2542 /* Person+CoreDataProperties.swift */,
-				3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */,
-				3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */,
+				3F38FF1C2141B0A50054133F /* CoreData */,
+				3F38FF1A2141AFC20054133F /* Storyboards */,
+				3F38FF172141AF2B0054133F /* UserInterface */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -289,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8DE41E20B5AA6C003BF2BC /* ViewController.swift in Sources */,
+				3F8DE41E20B5AA6C003BF2BC /* HomeViewController.swift in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
 				3FF60E6020F644E4007B2542 /* History+CoreDataClass.swift in Sources */,
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,

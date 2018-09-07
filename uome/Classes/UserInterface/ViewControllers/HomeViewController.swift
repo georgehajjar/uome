@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  uome
 //
 //  Created by George Hajjar on 2018-05-23.
@@ -9,28 +9,30 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
-    let cellReuseIdentifier = "cell"
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var homeTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        //Initialize table delegates
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        
-        //Initialize customTableViewCell nib
-        let nib = UINib(nibName: "customTableViewCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: "cell")
-        
-        //Hide Table View
-        tableView.tableFooterView = UIView()
+        setUpTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        self.homeTableView.reloadData()
+    }
+    
+    func setUpTableView() {
+        //Initialize table delegates
+        self.homeTableView.delegate = self;
+        self.homeTableView.dataSource = self;
+        
+        //Initialize customTableViewCell nib
+        let nib = UINib(nibName: "customTableViewCell", bundle: nil)
+        self.homeTableView.register(nib, forCellReuseIdentifier: "cell")
+        
+        //Hide Table View
+        homeTableView.tableFooterView = UIView()
     }
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
@@ -71,7 +73,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         person.name = name
                         person.money = 0.0
                         DatabaseController.saveContext()
-                        self.tableView.reloadData()
+                        self.homeTableView.reloadData()
                         print("Person Added. Empty")
                     }
                     else {
@@ -83,7 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             person.name = name
                             person.money = 0.0
                             DatabaseController.saveContext()
-                            self.tableView.reloadData()
+                            self.homeTableView.reloadData()
                             print("Person Added. No Duplicate")
                         }
                     }
@@ -124,6 +126,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }))
         self.present(alert, animated: true)
     }
+}
+    
+extension HomeViewController: UITableViewDelegate {}
+
+extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return DataManager.sharedManager.nameData.count
@@ -137,16 +144,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            print("Error: \(error)")
 //        }
         
-        guard let sections = self.fetchedResultsController.sections else {
-            fatalError("No sections in fetchedResultsController")
+        if let sections = self.fetchedResultsController.sections {
+            return sections[section].numberOfObjects
         }
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+        return 0
+//
+//        guard let sections = self.fetchedResultsController.sections else {
+//            return 1//fatalError("No sections in fetchedResultsController")
+//        }
+//        let sectionInfo = sections[section]
+//        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         //Initialize custom cell
-        let cell:customTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! customTableViewCell
+        let cell:customTableViewCell = self.homeTableView.dequeueReusableCell(withIdentifier: "cell") as! customTableViewCell
         
 //        if !DataManager.sharedManager.nameData.isEmpty {
 //            cell.nameLabel.text = DataManager.sharedManager.nameData[indexPath.row]
