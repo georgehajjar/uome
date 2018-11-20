@@ -17,12 +17,12 @@
 		3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */; };
 		3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BA20C864C10012F536 /* MainTabBarController.swift */; };
 		3FA078BD20C869500012F536 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BC20C869500012F536 /* DataManager.swift */; };
+		3FC80BD821A093EB00219747 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC80BD621A093EB00219747 /* History+CoreDataClass.swift */; };
+		3FC80BD921A093EB00219747 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC80BD721A093EB00219747 /* History+CoreDataProperties.swift */; };
 		3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */; };
 		3FF60E3820F3D847007B2542 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E3620F3D847007B2542 /* Data.xcdatamodeld */; };
 		3FF60E5E20F644E4007B2542 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5A20F644E4007B2542 /* Person+CoreDataClass.swift */; };
 		3FF60E5F20F644E4007B2542 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5B20F644E4007B2542 /* Person+CoreDataProperties.swift */; };
-		3FF60E6020F644E4007B2542 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */; };
-		3FF60E6120F644E4007B2542 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */; };
 		3FF60E6420F650AD007B2542 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E6320F650AD007B2542 /* DatabaseController.swift */; };
 		3FF60E6620F79CBC007B2542 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -59,12 +59,12 @@
 		3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		3FA078BA20C864C10012F536 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3FA078BC20C869500012F536 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3FC80BD621A093EB00219747 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FC80BD721A093EB00219747 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FD0B40C20CA05A500B11647 /* AddPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 		3FF60E3720F3D847007B2542 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		3FF60E5A20F644E4007B2542 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3FF60E5B20F644E4007B2542 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FF60E6320F650AD007B2542 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		3FF60E6520F79CBC007B2542 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,8 +146,8 @@
 			children = (
 				3FF60E5A20F644E4007B2542 /* Person+CoreDataClass.swift */,
 				3FF60E5B20F644E4007B2542 /* Person+CoreDataProperties.swift */,
-				3FF60E5C20F644E4007B2542 /* History+CoreDataClass.swift */,
-				3FF60E5D20F644E4007B2542 /* History+CoreDataProperties.swift */,
+				3FC80BD621A093EB00219747 /* History+CoreDataClass.swift */,
+				3FC80BD721A093EB00219747 /* History+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -337,16 +337,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC80BD921A093EB00219747 /* History+CoreDataProperties.swift in Sources */,
 				3F8DE41E20B5AA6C003BF2BC /* HomeViewController.swift in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
-				3FF60E6020F644E4007B2542 /* History+CoreDataClass.swift in Sources */,
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,
 				3FA078BD20C869500012F536 /* DataManager.swift in Sources */,
 				3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */,
 				3FF60E5E20F644E4007B2542 /* Person+CoreDataClass.swift in Sources */,
 				3FF60E5F20F644E4007B2542 /* Person+CoreDataProperties.swift in Sources */,
-				3FF60E6120F644E4007B2542 /* History+CoreDataProperties.swift in Sources */,
 				3FF60E6620F79CBC007B2542 /* SettingsViewController.swift in Sources */,
+				3FC80BD821A093EB00219747 /* History+CoreDataClass.swift in Sources */,
 				3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */,
 				3FF60E3820F3D847007B2542 /* Data.xcdatamodeld in Sources */,
 				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,

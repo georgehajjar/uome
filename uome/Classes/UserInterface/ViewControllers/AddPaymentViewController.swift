@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate {
 
     var restOfNames = [String]()
     var temp = ""
@@ -25,9 +26,25 @@ class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPick
         payeeName.inputView = payeePickerView
         
         //Create new array with all names minus payer
-        restOfNames = DataManager.sharedManager.nameData
-        let toBeRemoved = restOfNames.index(of: DataManager.sharedManager.payer)
-        restOfNames.remove(at: toBeRemoved!)
+//        restOfNames = DataManager.sharedManager.nameData
+//        let toBeRemoved = restOfNames.index(of: DataManager.sharedManager.payer)
+//        restOfNames.remove(at: toBeRemoved!)
+
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        
+        do{
+            let personArray = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for pers in personArray as [Person]{
+                restOfNames.append(pers.name!)
+            }
+            
+            let toBeRemoved = restOfNames.index(of: DataManager.sharedManager.payer)
+            restOfNames.remove(at: toBeRemoved!)
+            
+        } catch{
+            print("Error: \(error)")
+        }
     }
     
     @IBAction func quitAddPayment(_ sender: Any) {
@@ -46,14 +63,14 @@ class AddPaymentViewController: UIViewController, UIPickerViewDataSource, UIPick
         return 1
     }
     
-    //Set data in pickerview
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return restOfNames[row]
-    }
-    
     //Set number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return restOfNames.count
+    }
+    
+    //Set data in pickerview
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return restOfNames[row]
     }
     
     //When item is selected in pickerview do...

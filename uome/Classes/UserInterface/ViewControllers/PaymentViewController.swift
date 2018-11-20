@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
+class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate {
     
     let cellReuseIdentifier = "cell"
     
@@ -54,11 +55,11 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    //Set text color to white
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let str = DataManager.sharedManager.nameData[row]
-        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
-    }
+//    //Set text color to white
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        let str = DataManager.sharedManager.nameData[row]
+//        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+//    }
     
     //Number of columns
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -67,19 +68,57 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //Set data in pickerview
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DataManager.sharedManager.nameData[row]
+//        return DataManager.sharedManager.nameData[row]
+        var userName: String = ""
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        do{
+            let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+            userName = people[row].name!
+        }
+        catch{
+            print("Error: \(error)")
+        }
+        return userName
     }
     
     //Set number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DataManager.sharedManager.nameData.count
+//        return DataManager.sharedManager.nameData.count
+        var userCount: Int = 0
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        do{
+            let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+            userCount = people.count
+        }
+        catch{
+            print("Error: \(error)")
+        }
+        return userCount
     }
     
     //When item is selected in pickerview do...
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        DataManager.sharedManager.payer = DataManager.sharedManager.nameData[row]
-        paidByName.text = DataManager.sharedManager.nameData[row]
+//        DataManager.sharedManager.payer = DataManager.sharedManager.nameData[row]
+//        paidByName.text = DataManager.sharedManager.nameData[row]
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        var payer: String = ""
         
+        do{
+            let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+            payer = people[row].name!
+            
+            let history:History = NSEntityDescription.insertNewObject(forEntityName: "History", into: DatabaseController.persistentContainer.viewContext) as! History
+            
+            history.participants.append(payer)
+            DataManager.sharedManager.payer = payer
+            history.title = ""
+            history.owed.append(1.0)
+            
+            paidByName.text = payer
+        } catch{
+            print("Error: \(error)")
+        }
+
         //Unlock add payment button if user inputted payer
         if paidByName.text != "" {
             addPaymentButton.isEnabled = true

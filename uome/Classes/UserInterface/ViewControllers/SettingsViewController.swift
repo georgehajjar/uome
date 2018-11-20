@@ -26,4 +26,15 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func clearHistoryClass(_ sender: Any) {
+        let fetchRequest:NSFetchRequest<History> = History.fetchRequest()
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+        do {
+            try DatabaseController.persistentContainer.viewContext.execute(batchDeleteRequest)
+            
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+    
 }

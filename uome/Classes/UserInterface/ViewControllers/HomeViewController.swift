@@ -31,13 +31,16 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
         let nib = UINib(nibName: "customTableViewCell", bundle: nil)
         self.homeTableView.register(nib, forCellReuseIdentifier: "cell")
         
+        //Hide seperator line
+        homeTableView.separatorStyle = .none
+        
         //Hide Table View
         homeTableView.tableFooterView = UIView()
     }
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         //Create Fetch Request
-        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
 
         //Configure Fetch Request
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -58,54 +61,66 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             if let name = alert.textFields?.first?.text {
                 
-                //DB START
-                let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
-                
                 do {
-                    let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
-                    
                     let query:NSFetchRequest<Person> = Person.fetchRequest()
                     query.predicate = NSPredicate(format: "name = %@", name)
                     let occurances = try DatabaseController.persistentContainer.viewContext.fetch(query)
                     
-                    if people.count == 0 {
+                    if occurances.count != 0 {
+                        let errorAlert = UIAlertController(title: "Duplicate participant not added", message: nil, preferredStyle: .alert)
+                        errorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(errorAlert, animated: true)
+                        return
+                    }
+                    else {
                         let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
                         person.name = name
                         person.money = 0.0
+                        
+//                        let history:History = NSEntityDescription.insertNewObject(forEntityName: "History", into: DatabaseController.persistentContainer.viewContext) as! History
+//
+//                        history.title = "Test1"
+//                        history.participants.append(person.name!)
+//                        history.owed.append(person.money)
+                        
                         DatabaseController.saveContext()
                         self.homeTableView.reloadData()
-                        print("Person Added. Empty")
                     }
-                    else {
-                        if occurances.count != 0 {
-                            print("Person not added. Duplicate")
-                        }
-                        else {
-                            let person:Person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: DatabaseController.persistentContainer.viewContext) as! Person
-                            person.name = name
-                            person.money = 0.0
-                            DatabaseController.saveContext()
-                            self.homeTableView.reloadData()
-                            print("Person Added. No Duplicate")
-                        }
-                    }
-                }
-                catch{
+                } catch{
                     print("Error: \(error)")
                 }
                 
+                let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+                
                 do{
                     let personArray = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
-                    print("number of results: \(personArray.count)")
-                    
+                    print("number of people: \(personArray.count)")
+
                     for pers in personArray as [Person]{
                         print("\(pers.name!) has \(pers.money)")
                     }
-                }
-                catch{
+                } catch{
                     print("Error: \(error)")
                 }
-                //DB END
+                
+//                let historyFetchRequest:NSFetchRequest<History> = History.fetchRequest()
+//
+//                do{
+//                    let historyArray = try DatabaseController.persistentContainer.viewContext.fetch(historyFetchRequest)
+//                    print("number of history: \(historyArray.count)")
+//
+//                    for pers in historyArray as [History]{
+//                        print("Tile of Payment: \(pers.title!)")
+//                        for i in 1...pers.participants.count{
+//                            print(pers.participants[i-1])
+//                        }
+//                        for i in 1...pers.owed.count{
+//                            print(pers.owed[i-1])
+//                        }
+//                    }
+//                } catch{
+//                    print("Error: \(error)")
+//                }
                 
                 
 //                if DataManager.sharedManager.nameData.isEmpty {
@@ -133,33 +148,31 @@ extension HomeViewController: UITableViewDelegate {}
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return DataManager.sharedManager.nameData.count
+        //return DataManager.sharedManager.nameData.count
         
-//        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
-//        do{
-//            let searchResults = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
-//            return searchResults.count
-//        }
-//        catch{
-//            print("Error: \(error)")
-//        }
-        
-        if let sections = self.fetchedResultsController.sections {
-            return sections[section].numberOfObjects
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        do{
+            let searchResults = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
+            return searchResults.count
+        } catch{
+            print("Error: \(error)")
         }
-        return 0
-//
-//        guard let sections = self.fetchedResultsController.sections else {
-//            return 1//fatalError("No sections in fetchedResultsController")
-//        }
-//        let sectionInfo = sections[section]
-//        return sectionInfo.numberOfObjects
+        
+        guard let sections = self.fetchedResultsController.sections else {
+            //assertionFailure("No sections in fetchedResultsController")
+            return 0
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Initialize custom cell
         let cell:customTableViewCell = self.homeTableView.dequeueReusableCell(withIdentifier: "cell") as! customTableViewCell
+        
+        //Disable selection
+        cell.selectionStyle = .none
         
 //        if !DataManager.sharedManager.nameData.isEmpty {
 //            cell.nameLabel.text = DataManager.sharedManager.nameData[indexPath.row]
@@ -175,8 +188,10 @@ extension HomeViewController: UITableViewDataSource {
                 cell.nameLabel.text = people[indexPath.row].name!
                 cell.priceLabel.text = String(format: "$ %.02f", people[indexPath.row].money)
             }
-        }
-        catch{
+            else {
+                return UITableViewCell()
+            }
+        } catch{
             print("Error: \(error)")
         }
         return cell
