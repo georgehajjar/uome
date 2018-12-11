@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1B72CC21AF778700365075 /* customCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B72CA21AF778700365075 /* customCollectionViewCell.swift */; };
+		3F1B72CD21AF778700365075 /* customCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1B72CB21AF778700365075 /* customCollectionViewCell.xib */; };
+		3F1B72D121AF7B1500365075 /* UICollectionViewCell+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B72D021AF7B1500365075 /* UICollectionViewCell+Reuse.swift */; };
 		3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */; };
 		3F8DE41E20B5AA6C003BF2BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE41D20B5AA6C003BF2BC /* HomeViewController.swift */; };
 		3F8DE42120B5AA6C003BF2BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE41F20B5AA6C003BF2BC /* Main.storyboard */; };
 		3F8DE42320B5AA6C003BF2BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42220B5AA6C003BF2BC /* Assets.xcassets */; };
 		3F8DE42620B5AA6C003BF2BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE42420B5AA6C003BF2BC /* LaunchScreen.storyboard */; };
-		3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */; };
-		3F8DE45020B749A4003BF2BC /* customTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */; };
 		3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */; };
 		3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BA20C864C10012F536 /* MainTabBarController.swift */; };
 		3FA078BD20C869500012F536 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA078BC20C869500012F536 /* DataManager.swift */; };
@@ -45,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F1B72CA21AF778700365075 /* customCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F1B72CB21AF778700365075 /* customCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customCollectionViewCell.xib; sourceTree = "<group>"; };
+		3F1B72D021AF7B1500365075 /* UICollectionViewCell+Reuse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Reuse.swift"; sourceTree = "<group>"; };
 		3F8DE41820B5AA6C003BF2BC /* uome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DE41B20B5AA6C003BF2BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8DE41D20B5AA6C003BF2BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -54,8 +58,6 @@
 		3F8DE42720B5AA6C003BF2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8DE42C20B5AA6C003BF2BC /* uomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DE43720B5AA6C003BF2BC /* uomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
-		3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customTableViewCell.xib; sourceTree = "<group>"; };
 		3F8DE45120BD9099003BF2BC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		3FA078BA20C864C10012F536 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3FA078BC20C869500012F536 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F1B72D221AF7B1A00365075 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F1B72D021AF7B1500365075 /* UICollectionViewCell+Reuse.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3F38FF172141AF2B0054133F /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,8 +116,8 @@
 		3F38FF182141AF840054133F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3F8DE44D20B749A4003BF2BC /* customTableViewCell.swift */,
-				3F8DE44E20B749A4003BF2BC /* customTableViewCell.xib */,
+				3F1B72CA21AF778700365075 /* customCollectionViewCell.swift */,
+				3F1B72CB21AF778700365075 /* customCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -187,6 +197,7 @@
 		3FF60E6220F644FD007B2542 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3F1B72D221AF7B1A00365075 /* Extensions */,
 				3F38FF1C2141B0A50054133F /* CoreData */,
 				3F38FF1A2141AFC20054133F /* Storyboards */,
 				3F38FF172141AF2B0054133F /* UserInterface */,
@@ -270,6 +281,7 @@
 				TargetAttributes = {
 					3F8DE41720B5AA6C003BF2BC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					3F8DE42B20B5AA6C003BF2BC = {
@@ -309,9 +321,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1B72CD21AF778700365075 /* customCollectionViewCell.xib in Resources */,
 				3F8DE42620B5AA6C003BF2BC /* LaunchScreen.storyboard in Resources */,
 				3F8DE42320B5AA6C003BF2BC /* Assets.xcassets in Resources */,
-				3F8DE45020B749A4003BF2BC /* customTableViewCell.xib in Resources */,
 				3F8DE42120B5AA6C003BF2BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,9 +352,9 @@
 				3FC80BD921A093EB00219747 /* History+CoreDataProperties.swift in Sources */,
 				3F8DE41E20B5AA6C003BF2BC /* HomeViewController.swift in Sources */,
 				3F8DE41C20B5AA6C003BF2BC /* AppDelegate.swift in Sources */,
+				3F1B72CC21AF778700365075 /* customCollectionViewCell.swift in Sources */,
 				3FA078BB20C864C10012F536 /* MainTabBarController.swift in Sources */,
 				3FA078BD20C869500012F536 /* DataManager.swift in Sources */,
-				3F8DE44F20B749A4003BF2BC /* customTableViewCell.swift in Sources */,
 				3FF60E5E20F644E4007B2542 /* Person+CoreDataClass.swift in Sources */,
 				3FF60E5F20F644E4007B2542 /* Person+CoreDataProperties.swift in Sources */,
 				3FF60E6620F79CBC007B2542 /* SettingsViewController.swift in Sources */,
@@ -350,6 +362,7 @@
 				3FD0B40D20CA05A500B11647 /* AddPaymentViewController.swift in Sources */,
 				3FF60E3820F3D847007B2542 /* Data.xcdatamodeld in Sources */,
 				3F8DE45220BD9099003BF2BC /* PaymentViewController.swift in Sources */,
+				3F1B72D121AF7B1500365075 /* UICollectionViewCell+Reuse.swift in Sources */,
 				3FF60E6420F650AD007B2542 /* DatabaseController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -526,6 +540,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = george.uome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -535,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

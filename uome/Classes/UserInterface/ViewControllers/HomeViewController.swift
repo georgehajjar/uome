@@ -11,31 +11,33 @@ import CoreData
 
 class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
-    @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var homeCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTableView()
+        setUpCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.homeTableView.reloadData()
+        self.homeCollectionView.reloadData()
     }
     
-    func setUpTableView() {
+    func setUpCollectionView() {
         //Initialize table delegates
-        self.homeTableView.delegate = self;
-        self.homeTableView.dataSource = self;
+        self.homeCollectionView.delegate = self;
+        self.homeCollectionView.dataSource = self;
         
-        //Initialize customTableViewCell nib
-        let nib = UINib(nibName: "customTableViewCell", bundle: nil)
-        self.homeTableView.register(nib, forCellReuseIdentifier: "cell")
+        //Initialize customCollectionViewCell
+        customCollectionViewCell.register(with: homeCollectionView)
         
-        //Hide seperator line
-        homeTableView.separatorStyle = .none
+        //Disable Scroll Bars
+        homeCollectionView.showsVerticalScrollIndicator = false
+        homeCollectionView.showsHorizontalScrollIndicator = false
         
-        //Hide Table View
-        homeTableView.tableFooterView = UIView()
+        //Set vertical scroll direction
+        if let layout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .vertical
+        }
     }
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
@@ -78,13 +80,12 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
                         person.money = 0.0
                         
 //                        let history:History = NSEntityDescription.insertNewObject(forEntityName: "History", into: DatabaseController.persistentContainer.viewContext) as! History
-//
 //                        history.title = "Test1"
 //                        history.participants.append(person.name!)
 //                        history.owed.append(person.money)
                         
                         DatabaseController.saveContext()
-                        self.homeTableView.reloadData()
+                        self.homeCollectionView.reloadData()
                     }
                 } catch{
                     print("Error: \(error)")
@@ -121,34 +122,21 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
 //                } catch{
 //                    print("Error: \(error)")
 //                }
-                
-                
-//                if DataManager.sharedManager.nameData.isEmpty {
-//                    DataManager.sharedManager.nameData.append(name)
-//                    DataManager.sharedManager.moneyData.append(0)
-//                    self.tableView.reloadData()
-//                }
-//                else {
-//                    if DataManager.sharedManager.nameData.contains(name) {
-//                    }
-//                    else {
-//                        DataManager.sharedManager.nameData.append(name)
-//                        DataManager.sharedManager.moneyData.append(0)
-//                        self.tableView.reloadData()
-//                    }
-//                }
             }
         }))
         self.present(alert, animated: true)
     }
 }
-    
-extension HomeViewController: UITableViewDelegate {}
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController : UICollectionViewDelegate {}
+
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return DataManager.sharedManager.nameData.count
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
         do{
@@ -166,34 +154,33 @@ extension HomeViewController: UITableViewDataSource {
         return sectionInfo.numberOfObjects
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         //Initialize custom cell
-        let cell:customTableViewCell = self.homeTableView.dequeueReusableCell(withIdentifier: "cell") as! customTableViewCell
-        
-        //Disable selection
-        cell.selectionStyle = .none
-        
-//        if !DataManager.sharedManager.nameData.isEmpty {
-//            cell.nameLabel.text = DataManager.sharedManager.nameData[indexPath.row]
-//            cell.priceLabel.text = String(format: "$ %.02f", DataManager.sharedManager.moneyData[indexPath.row])
-//        }
-//        return cell
+        guard let collectionViewCell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: customCollectionViewCell.identifier, for: indexPath) as? customCollectionViewCell else {
+            assertionFailure("cellForRowAt error")
+            return UICollectionViewCell()
+        }
         
         let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
         do{
             let people = try DatabaseController.persistentContainer.viewContext.fetch(fetchRequest)
             
             if people.count != 0 {
-                cell.nameLabel.text = people[indexPath.row].name!
-                cell.priceLabel.text = String(format: "$ %.02f", people[indexPath.row].money)
+                collectionViewCell.nameLabel.text = people[indexPath.row].name!
+                collectionViewCell.priceLabel.text = String(format: "$ %.02f", people[indexPath.row].money)
             }
             else {
-                return UITableViewCell()
+                return UICollectionViewCell()
             }
         } catch{
             print("Error: \(error)")
         }
-        return cell
+        
+        return collectionViewCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 50)
     }
 }

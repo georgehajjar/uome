@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate {
+class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate {
     
     let cellReuseIdentifier = "cell"
     
@@ -128,6 +128,28 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+}
+
+//extension PaymentViewController : UICollectionViewDelegate {}
+//
+//extension PaymentViewController : UICollectionViewDataSource {
+//    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//}
+    
+extension PaymentViewController : UITableViewDelegate {}
+
+extension PaymentViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataManager.sharedManager.payee.count
@@ -135,13 +157,13 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Initialize custom cell
-        let cell:customTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! customTableViewCell
+        //let cell:customTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! customTableViewCell
         
         if !DataManager.sharedManager.payee.isEmpty {
-            cell.nameLabel.text = DataManager.sharedManager.payee[indexPath.row]
-            cell.priceLabel.text = String(format: "$ %.02f", DataManager.sharedManager.payeeAmount[indexPath.row])
+            //cell.nameLabel.text = DataManager.sharedManager.payee[indexPath.row]
+            //cell.priceLabel.text = String(format: "$ %.02f", DataManager.sharedManager.payeeAmount[indexPath.row])
         }
-        return cell
+        return UITableViewCell()
     }
     
     @IBAction func addPressed(_ sender: UIButton) {
@@ -180,5 +202,4 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
 }
